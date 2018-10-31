@@ -135,13 +135,16 @@
 <ol>
 <li><p>Configure the Apache service to listen on port 8080.</p>
 
-<p>vi /etc/httpd/conf/httpd.conf and add the following line: Listen <ipaddress>:8080</p></li>
+<pre><code>     vi /etc/httpd/conf/httpd.conf and add the following line: Listen &lt;ipaddress&gt;:8080
+</code></pre></li>
 <li><p>Open the firewall port 8080.</p>
 
-<p>firewall-cmd --permanent --add-port=8080/tcp &amp;&amp; firewall-cmd –reload</p></li>
+<pre><code>     firewall-cmd --permanent --add-port=8080/tcp &amp;&amp; firewall-cmd –reload
+</code></pre></li>
 <li><p>Restart the Apache service.</p>
 
-<p>Restart the Apache service.</p></li>
+<pre><code>     Restart the Apache service.
+</code></pre></li>
 <li><p>In the web browser of your choice (e.g., Google Chrome, Internet Explorer, Firefox, etc.), enter the IP address of the ownCloud server and login with the default administrator credentials.</p></li>
 </ol>
 
@@ -172,7 +175,7 @@
 <ul>
 <li><p><a href="https://owncloud.org/download/#owncloud-desktop-client-macos">ownCloud Desktop Client for MacOS</a></p></li>
 <li><p><a href="https://owncloud.org/download/#owncloud-desktop-client-windows">ownCloud Desktop Client for Windows</a></p></li>
-<li><p><a href="link:https://owncloud.org/download/#owncloud-desktop-client-linux">ownCloud Desktop Client for Linux</a></p></li>
+<li><p><a href="https://owncloud.org/download/#owncloud-desktop-client-linux">ownCloud Desktop Client for Linux</a></p></li>
 </ul>
 
 <h3>5.2 Connecting to the ownCloud Server Using a Mobile Device</h3>
