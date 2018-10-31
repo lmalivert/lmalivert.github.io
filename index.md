@@ -143,7 +143,7 @@
 </code></pre></li>
 <li><p>Restart the Apache service.</p>
 
-<pre><code>     Restart the Apache service.
+<pre><code>     systemctl restart httpd
 </code></pre></li>
 <li><p>In the web browser of your choice (e.g., Google Chrome, Internet Explorer, Firefox, etc.), enter the IP address of the ownCloud server and login with the default administrator credentials.</p></li>
 </ol>
