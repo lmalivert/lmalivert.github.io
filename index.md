@@ -41,16 +41,16 @@
 <li>Ubuntu 16.04 and 18.04</li>
 </ul>
 
-<p><strong>TIP</strong> For a detailed list of recommended and supported options, see System Requirements.</p>
+<p><strong>TIP</strong> For a detailed list of recommended and supported options, see <a href="https://doc.owncloud.org/server/10.0/admin_manual/installation/system_requirements.html">System Requirements</a>.</p>
 
 <h3>2.2 Installing ownCloud Server on Linux</h3>
 
 <p>There are 3 methods for deploying the ownCloud server. Select the best method that applies to your environment and click the appropriate link for installation procedures:</p>
 
 <ol>
-<li>Manual Installation on Linux* (Preferred Method) - For installation procedures, see <a href="https://doc.owncloud.org/server/10.0/admin_manual/installation/source_installation.html">Manual Installation on Linux</a>.</li>
-<li>ownCloud X Server Appliance* (Recommended for testing) - For installation procedures, see <a href="https://oc.owncloud.com/rs/038-KRL-592/images/Whitepaper_User_Guide_Applicance_ENG.pdf">Setting up Your ownCloud</a>. For additional information, see <a href="https://doc.owncloud.com/server/latest/admin_manual/appliance/">ownCloud X Appliance Documentation</a>.</li>
-<li>Linux Package Manager* - For installation procedures, see <a href="https://doc.owncloud.org/server/10.0/admin_manual/installation/linux_installation.htm">Linux Package Manager Installation</a>.</li>
+<li><strong>Manual Installation on Linux</strong> (Preferred Method) - For installation procedures, see <a href="https://doc.owncloud.org/server/10.0/admin_manual/installation/source_installation.html">Manual Installation on Linux</a>.</li>
+<li><strong>ownCloud X Server Appliance</strong> (Recommended for testing) - For installation procedures, see <a href="https://oc.owncloud.com/rs/038-KRL-592/images/Whitepaper_User_Guide_Applicance_ENG.pdf">Setting up Your ownCloud</a>. For additional information, see <a href="https://doc.owncloud.com/server/latest/admin_manual/appliance/">ownCloud X Appliance Documentation</a>.</li>
+<li><strong>Linux Package Manager</strong> - For installation procedures, see <a href="https://doc.owncloud.org/server/10.0/admin_manual/installation/linux_installation.htm">Linux Package Manager Installation</a>.</li>
 </ol>
 
 <p><strong>WARNING</strong> This package is not recommended for production environments.</p>
@@ -64,46 +64,59 @@
 <ol>
 <li><p>Install the PHP prerequisite modules on the console.</p>
 
-<p>yum install php72-php-pecl-zip php-xml <em>xmlwriter</em> php72-php-intl -y</p></li>
+<pre><code>  yum install php72-php-pecl-zip php-xml *xmlwriter* php72-php-intl -y
+</code></pre></li>
 <li><p>Download the ownCloud-10.x.x.zip source file.</p>
 
-<p>wget https://download.owncloud.org/community/owncloud-10.x.x.zip</p></li>
+<pre><code>  wget https://download.owncloud.org/community/owncloud-10.x.x.zip
+</code></pre></li>
 <li><p>Extract the ownloud-10.x.x.zip source file.</p>
 
-<p>unzip owncloud-10.0.10.zip</p></li>
+<pre><code>  unzip owncloud-10.0.10.zip
+</code></pre></li>
 <li><p>Move the extracted directory into the Apache document directory</p>
 
-<p>mv owncloud /var/www/</p></li>
+<pre><code>  mv owncloud /var/www/
+</code></pre></li>
 <li><p>Copy the ownCloud Apache configuration file from the <strong>Manual Installation on Linux</strong> page, and then <strong>Configure Apache Web Server</strong> section.</p>
 
-<p>vi /etc/httpd/conf.d/owncloud.conf:</p>
+<pre><code>  vi /etc/httpd/conf.d/owncloud.conf:
 
-<p>Alias /owncloud "/var/www/owncloud/"</p>
 
-<p><Directory /var/www/owncloud/>
-    Options +FollowSymlinks
-    AllowOverride All</p>
+  Alias /owncloud "/var/www/owncloud/"
 
-<p><IfModule mod_dav.c>
-   Dav off
-   </IfModule></p>
 
-<p>SetEnv HOME /var/www/owncloud
-   SetEnv HTTP_HOME /var/www/owncloud</p>
+  &lt;Directory /var/www/owncloud/&gt;
+  Options +FollowSymlinks
+  AllowOverride All
 
-<p></Directory></p></li>
+
+  &lt;IfModule mod_dav.c&gt;
+  Dav off
+  &lt;/IfModule&gt;
+
+
+  SetEnv HOME /var/www/owncloud
+  SetEnv HTTP_HOME /var/www/owncloud
+
+
+  &lt;/Directory&gt;
+</code></pre></li>
 <li><p>If SELinux is enabled, set the correct context on the ownCloud Apache directory.</p>
 
-<p>chcon --verbose --recursive --reference /var/www/html /var/www/owncloud</p></li>
+<pre><code>  chcon --verbose --recursive --reference /var/www/html /var/www/owncloud
+</code></pre></li>
 <li><p>Change ownership of Apache ownCloud directory to the Apache user.</p>
 
-<p>chown -R apache:apache /var/www/owncloud/</p></li>
+<pre><code>  chown -R apache:apache /var/www/owncloud/
+</code></pre></li>
 <li><p>Open the firewall port for needed for ownCloud Http service.</p>
 
-<p>firewall-cmd --permanent --add-port=80/tcp &amp;&amp; firewall-cmd –reload</p></li>
+<pre><code>  firewall-cmd --permanent --add-port=80/tcp &amp;&amp; firewall-cmd –reload
+</code></pre></li>
 <li><p>Start and enable the Apache service.</p>
 
-<pre><code>   systemctl start httpd &amp;&amp; systemctl enable httpd
+<pre><code>     systemctl start httpd &amp;&amp; systemctl enable httpd
 </code></pre></li>
 </ol>
 
@@ -132,7 +145,7 @@
 <li><p>In the web browser of your choice (e.g., Google Chrome, Internet Explorer, Firefox, etc.), enter the IP address of the ownCloud server and login with the default administrator credentials.</p></li>
 </ol>
 
-<p><strong>TIP</strong>      The default administrator credentials are <em>Administrator</em> and the root password.</p>
+<p><strong>TIP</strong> The default administrator credentials are <em>Administrator</em> and the root password.</p>
 
 <h2>Chapter 4. Adding a User Account to the ownCloud Server</h2>
 
@@ -143,7 +156,7 @@
 <p><strong>To add a user account using the web UI</strong></p>
 
 <ol>
-<li>Click the <em>Administrator</em> drop-down menu.</li>
+<li>Click the <strong>Administrator</strong> drop-down menu.</li>
 <li>Select <strong>Users</strong>.</li>
 <li>In the <strong>Username</strong> field, enter a username.</li>
 <li>In the <strong>E-Mail</strong> field, enter a valid e-mail address.</li>
@@ -157,9 +170,9 @@
 <p><strong>To connect to one of the following desktop clients, click the appropriate link and follow the download procedure:</strong></p>
 
 <ul>
-<li><a href="https://owncloud.org/download/#owncloud-desktop-client-macos">ownCloud Desktop Client for MacOS</a></li>
-<li><a href="https://owncloud.org/download/#owncloud-desktop-client-windows">ownCloud Desktop Client for Windows</a></li>
-<li><a href="link:https://owncloud.org/download/#owncloud-desktop-client-linux">ownCloud Desktop Client for Linux</a></li>
+<li><p><a href="https://owncloud.org/download/#owncloud-desktop-client-macos">ownCloud Desktop Client for MacOS</a></p></li>
+<li><p><a href="https://owncloud.org/download/#owncloud-desktop-client-windows">ownCloud Desktop Client for Windows</a></p></li>
+<li><p><a href="link:https://owncloud.org/download/#owncloud-desktop-client-linux">ownCloud Desktop Client for Linux</a></p></li>
 </ul>
 
 <h3>5.2 Connecting to the ownCloud Server Using a Mobile Device</h3>
